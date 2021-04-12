@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { ViewState } from '@devexpress/dx-react-scheduler';
+import { AppointmentsProps, ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Toolbar,
   ViewSwitcher,
@@ -12,31 +12,7 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { makeStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import { FC } from 'react';
-
-interface Props{
-  children: React.ReactNode,
-  style : object;
-  data : object;
-  draggable: boolean;
-  AppointmentProps: 
-}
-
-const Appointment= ({
-    children, style, ...restProps
-  }:Props) => (
-    <Appointments.Appointment
-      {...restProps}
-      style={{
-        ...style,
-        backgroundColor: '#FFC107',
-        borderRadius: '8px',
-      }}
-    >
-      {children}
-    </Appointments.Appointment>
-  );
-
+import Header from '../Header';
 
 const Calendar = () => {
 
@@ -95,13 +71,14 @@ const Calendar = () => {
   ];
   
   return(
-
+  <div>
+    <Header/>
     <Paper>
       <Scheduler
         data={schedulerData}
         locale={'ko'}
         firstDayOfWeek={1}
-      >
+        >
 
         <ViewState />
         <Toolbar/>
@@ -112,12 +89,13 @@ const Calendar = () => {
           endDayHour={21.5}
           timeTableCellComponent={TimeTableCell}
           dayScaleCellComponent={DayScaleCell}
-        />
+          />
         <DayView startDayHour={10}
           endDayHour={21}/>
-        <Appointments appointmentComponent={Appointment}/>
+        <Appointments/>
       </Scheduler>
     </Paper>
+  </div>
   )
 }
 

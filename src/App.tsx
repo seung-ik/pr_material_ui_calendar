@@ -2,13 +2,14 @@ import React from 'react';
 import {Route,Switch,Redirect} from 'react-router-dom'
 import loadable from '@loadable/component'
 
-const Calender = loadable(()=> import("./components/Calendar"))
+const Calendar = loadable(()=> import("./components/Calendar"))
+const Main = loadable(()=> import("./components/Main"))
 
 function App() {
   return (
     <Switch>
-      <Redirect exact path="/" to="/calender" />
-      <Route path="/calender" component={Calender}/>
+      <Route exact path="/" component={Main}/>
+      <Route path="/calendar" component={Calendar}/>
     </Switch>
   );
 }
